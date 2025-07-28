@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Solar Panel Monitoring Dashboard</title>
+    <meta http-equiv="refresh" content="5"> <!-- 🔁 Auto-refresh every 5 seconds -->
+    <style>
+        body { font-family: Arial; background: #eef2f3; padding: 30px; }
+        h1 { text-align: center; color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ccc; text-align: center; }
+        th { background: #2980b9; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .ok { color: green; font-weight: bold; }
+        .alert { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🔋 Solar Panel Monitoring Dashboard (Auto-refreshes every 5s)</h1>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Voltage (V)</th>
+            <th>Current (A)</th>
+            <th>Power (W)</th>
+            <th>Temperature (°C)</th>
+            <th>Status</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.time }}</td>
+            <td>{{ row.voltage }}</td>
+            <td>{{ row.current }}</td>
+            <td>{{ row.power }}</td>
+            <td>{{ row.temperature }}</td>
+            <td class="{{ 'ok' if row.status == 'OK' else 'alert' }}">{{ row.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
